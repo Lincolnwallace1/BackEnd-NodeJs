@@ -14,12 +14,12 @@ interface IDatabaseConfig {
 const databaseConfig: IDatabaseConfig = {
   type: 'postgres',
   host: 'localhost',
-  username: 'postgres',
-  password: 'postgres',
+  username: 'v4h',
+  password: 'v4h',
   database: 'users',
-  port:  3333,
-  logging: true,
-  ssl: true,
+  port:  5432,
+  logging: false,
+  ssl: false,
 };
 
 export default databaseConfig as IDatabaseConfig;
