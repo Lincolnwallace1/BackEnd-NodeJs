@@ -1,6 +1,8 @@
-import express from "express";
+import 'reflect-metadata';
+import express from 'express';
 
-// @types/express
+import '../../infra/typeorm';
+
 const app = express();
 
 // http://localhost:3333/
