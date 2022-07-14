@@ -13,7 +13,7 @@ interface IDatabaseConfig {
 const databaseConfig: IDatabaseConfig = {
   type: 'postgres',
   host: 'localhost',
-  username: 'postgres',
+  username: 'postgre',
   password: 'postgres',
   database: 'users',
   port:  5432,
