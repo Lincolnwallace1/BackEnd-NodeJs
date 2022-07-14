@@ -3,6 +3,6 @@ node_modules/
 yarn.lock
 package-lock.json
 yarn-error.log
-temp/*
 ormconfig.json
-src/config/DataBaseConfig.ts
+./src/config/DataBaseConfig.ts
+temp/*
