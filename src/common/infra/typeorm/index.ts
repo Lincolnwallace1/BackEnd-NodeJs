@@ -14,8 +14,7 @@ export const AppDataSource = new DataSource({
   password: DataBaseConfig.password,
   database: DataBaseConfig.database,
   entities: [User],
-  migrations: [NewDB1657820765188],
-  migrationsTableName: "",  
+  migrations: [NewDB1657820765188], 
   synchronize: false,
   logging: DataBaseConfig.logging,
 });

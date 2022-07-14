@@ -4,5 +4,5 @@ yarn.lock
 package-lock.json
 yarn-error.log
 temp/*
-ormconfig.json
-src/config/DataBaseConfig.ts
+# ormconfig.json
+# src/config/DataBaseConfig.ts
