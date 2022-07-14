@@ -1,6 +1,7 @@
 {
   "compilerOptions": {
-    "target": "es2016",                                 
+    "experimentalDecorators": true,
+    "target": "es2018",                                 
     "module": "commonjs",                    
     "esModuleInterop": true,                             
     "forceConsistentCasingInFileNames": true,          
@@ -17,10 +18,15 @@
         "./src/config/*"
       ],
       "@docs/*": [
-        "./src/docs/*",    
+        "./src/docs/*", 
+        "./src/modules/user/infra/http/docs/*",   
       ],
-      "@routes/*": [],
-      "@entities/*": []
+      "@routes/*": [
+        "./src/modules/auth/infra/http/routes/*"
+      ],
+      "@entities/*": [
+        "./src/modules/user/infra/typeorm/entities/*"
+      ]
     }
   },                               
 }

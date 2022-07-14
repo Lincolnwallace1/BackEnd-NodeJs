@@ -1,9 +1,15 @@
-import 'reflect-metadata';
 import express from 'express';
 
-import '../../infra/typeorm';
+import { AppDataSource } from '../typeorm/index';
 
-const app = express();
+AppDataSource.initialize().then(() => {
+  const app = express()
 
-// http://localhost:3333/
-app.listen(3333, () => console.log("Server started on port 3333"));
+  app.use(express.json())
+
+  app.get('/', (req, res) => {
+    res.json({ message: 'Database connect' })
+  })
+
+  return app.listen(3333, () => console.log("Server started on port 3333"))
+})
