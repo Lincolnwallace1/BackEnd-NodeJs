@@ -1,5 +1,5 @@
 import { string } from 'zod';
-import APIConfig from '@config/APIConfig';
+import APIConfig from '././../../../config/APIConfig';
 
 class PhotoUrlTransformer {
   to(data: string): string | null {

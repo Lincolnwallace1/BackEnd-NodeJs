@@ -8,8 +8,8 @@ UpdateDateColumn} from "typeorm";
 import { Exclude } from 'class-transformer';
 import PhotoURLTransformer from '../../../utils/PhotoURLTransformer';
 
-@Entity('User')
-export class User {
+@Entity('user')
+class User {
   @PrimaryGeneratedColumn()
   id!: number
 
@@ -39,3 +39,5 @@ export class User {
   @UpdateDateColumn({ type: 'timestamptz' })
   updatedAt!: Date;
 }
+
+export default User;
