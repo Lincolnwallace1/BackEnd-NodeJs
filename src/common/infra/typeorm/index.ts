@@ -4,7 +4,7 @@ import DataBaseConfig from '../../../config/DataBaseConfig';
 
 import User from '../../../modules/user/infra/typeorm/entities/User';
 
-import {NewDB1657820765188} from '../../../config/migrations/1657820765188-NewDB'
+import NewDB from '../../../config/migrations/1658006821946-NewDB'
 
 export const AppDataSource = new DataSource({
   type: "postgres",
@@ -14,7 +14,7 @@ export const AppDataSource = new DataSource({
   password: DataBaseConfig.password,
   database: DataBaseConfig.database,
   entities: [User],
-  migrations: [NewDB1657820765188], 
+  migrations: [NewDB], 
   synchronize: false,
   logging: DataBaseConfig.logging,
 });

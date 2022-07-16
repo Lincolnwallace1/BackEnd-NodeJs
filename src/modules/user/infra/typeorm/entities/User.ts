@@ -10,7 +10,7 @@ import PhotoURLTransformer from '../../../utils/PhotoURLTransformer';
 
 @Entity('user')
 class User {
-  @PrimaryGeneratedColumn()
+  @PrimaryGeneratedColumn({ type: 'smallint',name: 'id' })
   id!: number
 
   @Exclude()
