@@ -3,12 +3,15 @@ class AppError {
 
   public readonly statusCode: number;
 
-  public readonly body: object | null;
+  public readonly internalCode: string | undefined;
 
-  constructor(message: string, statusCode = 502, body: object | null = null) {
+  public readonly data: any;
+
+  constructor(message: string, statusCode = 500, internalCode?: string, data?: any) {
     this.message = message;
     this.statusCode = statusCode;
-    this.body = body;
+    this.internalCode = internalCode;
+    this.data = data;
   }
 }
 

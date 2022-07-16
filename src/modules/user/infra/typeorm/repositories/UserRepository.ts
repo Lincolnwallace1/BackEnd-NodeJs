@@ -1,4 +1,4 @@
-import { AppDataSource } from "@common/infra/typeorm";
+import { AppDataSource } from "../../../../../common/infra/typeorm/index";
 import { injectable } from 'inversify';
 
 import User from '../entities/User';
@@ -25,8 +25,8 @@ class UserRepository implements IUserRepository {
     });
   }
 
-  public async update(user:User, data: IUpdateUserDTO): Promise<User> {
-    this.ormRepository.merge(user,data);
+  public async update(user: User, data: IUpdateUserDTO): Promise<User> {
+    this.ormRepository.merge(user, data);
     return await this.ormRepository.save(user);
   }
 
