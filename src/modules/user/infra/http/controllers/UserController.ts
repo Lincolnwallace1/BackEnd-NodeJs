@@ -86,7 +86,7 @@ class UserController {
       const deleteUser = AppContainer.resolve<DeleteUserService>(DeleteUserService);
       await deleteUser.execute( userId );
 
-      return res.status(StatusCodes.OK).json({});
+      return res.status(StatusCodes.OK).json();
 
     } catch(err) {
       throw new AppError('Bad request', StatusCodes.BAD_REQUEST);

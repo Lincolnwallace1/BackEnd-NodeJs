@@ -19,8 +19,8 @@ const DeleteUserSwagger = {
     },
   ],
   responses: {
-    204: {
-      description: 'User successfully deleted',
+    200: {
+      $ref: '#/components/responses/SuccessfulRequestNoResponseBody',
     },
     400: {
       $ref: '#/components/responses/BadRequest',

@@ -7,6 +7,7 @@ import swaggerUiExpress = require ("swagger-ui-express");
 
 import Routes from '../http/routes/index';
 import swaggerDefinition  from '../docs/SwaggerDefinition';
+import GlobalExceptionMiddleware from '../http/middlewares/GlobalExceptionMiddleware';
 
 AppDataSource.initialize().then(() => {
   const app = express()
@@ -14,6 +15,8 @@ AppDataSource.initialize().then(() => {
   app.use(express.json());
 
   app.use('/api/v1',Routes);
+
+  app.use(GlobalExceptionMiddleware);
 
   app.use('/api/v1/docs', swaggerUiExpress.serve, swaggerUiExpress.setup(swaggerDefinition, { customSiteTitle: 'User API'}));
 

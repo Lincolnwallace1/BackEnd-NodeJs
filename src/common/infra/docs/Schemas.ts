@@ -6,7 +6,7 @@ import UserDoc from '../../../modules/user/infra/http/docs/UserDocs';
 export const Schemas = {
   ...PaginationResponseDoc,
   ...BasicShemas,
-  ...UserDoc,
+  ...UserDoc.UserSchema,
 };
 
 export default Schemas;

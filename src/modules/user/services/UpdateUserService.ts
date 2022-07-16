@@ -40,7 +40,6 @@ class CreateUserService{
     }
 
     return await this.userRepository.update(user, data ) 
-    
   }
 }
 

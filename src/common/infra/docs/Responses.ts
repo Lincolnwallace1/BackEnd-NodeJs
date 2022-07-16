@@ -14,18 +14,6 @@ const Responses = {
       },
     },
   },
-  UserUpdated: {
-    description: 'The User was updated.',
-    content: {
-      'application/json': {
-        schema: {
-          allOf: [
-            { $ref: '#components/schemas/UserResponseUpdateBody' },
-          ],
-        },
-      },
-    },
-  },
   GetByIdUser: {
     description: 'The User was found.',
     content: {
