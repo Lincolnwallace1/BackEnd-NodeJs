@@ -14,22 +14,18 @@ import GetByIdUserService from '../../../services/GetByIdUserService';
 import ListUserService from '../../../services/ListUserService';
 import UpdateUserService from '../../../services/UpdateUserService';
 import DeleteUserService from '../../../services/DeleteUserService';
+import UploadPhotoUserService from '../../../services/UploadPhotoUserService';
 
 class UserController {
   public async create(req: Request, res: Response){
     const data = await CreateUserValidator.parseAsync(req.body).catch((err) => {
       throw new AppError(ParseZodValidationError(err), StatusCodes.BAD_REQUEST);
     });
-
-    try {
+    
       const createUser = AppContainer.resolve<CreateUserService>(CreateUserService);
       const user = await createUser.execute({ data });
     
       return res.status(StatusCodes.CREATED).json({ id: user.id });
-
-    } catch(err) {
-      throw new AppError('Bad request', StatusCodes.BAD_REQUEST);
-    }
   }
 
   public async getById(req: Request, res: Response){
@@ -62,7 +58,7 @@ class UserController {
   }
 
   public async update(req: Request, res: Response){
-    const data =await UpdateUserValidator.parseAsync(req.body).catch((err) => {
+    const data = await UpdateUserValidator.parseAsync(req.body).catch((err) => {
       throw new AppError(ParseZodValidationError(err), StatusCodes.BAD_REQUEST);
     });
 
@@ -91,6 +87,19 @@ class UserController {
     } catch(err) {
       throw new AppError('Bad request', StatusCodes.BAD_REQUEST);
     }
+  }
+
+  public async uploadPhoto(req:Request, res:Response): Promise<Response> {
+    const userId = +req.params.userId;
+
+    if (!req.file) throw new AppError('Missing File', StatusCodes.BAD_REQUEST);
+    const filename = req.file?.filename;
+
+    console.log('filename', filename);
+    const uploadPhoto = AppContainer.resolve<UploadPhotoUserService>(UploadPhotoUserService);
+    await uploadPhoto.execute({userId, filename });
+
+    return res.status(StatusCodes.NO_CONTENT).json({});
   }
 }
 

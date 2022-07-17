@@ -5,7 +5,7 @@ const UploadPhotoSwagger = {
   operationId: 'Upload Photo Swagger',
   parameters: [{
     in: 'path',
-    name: 'user',
+    name: 'userId',
     schema: {
       type: 'number',
     },

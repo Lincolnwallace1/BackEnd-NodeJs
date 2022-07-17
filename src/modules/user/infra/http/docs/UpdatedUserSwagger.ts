@@ -5,7 +5,7 @@ const UpdateUserSwagger = {
   operationId: 'UpdateUserSwagger',
   parameters: [{
     in: 'path',
-    name: 'user',
+    name: 'userId',
     schema: {
       type: 'number',
     },

@@ -5,7 +5,7 @@ const GetByIdUserSwagger = {
   operationId: 'GetByIdUserSwagger',
   parameters: [{
     in: 'path',
-    name: 'user',
+    name: 'userId',
     schema: {
       type: 'number',
     },

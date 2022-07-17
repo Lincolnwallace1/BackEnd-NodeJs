@@ -5,7 +5,7 @@ const DeleteUserSwagger = {
   operationId: 'DeleteUserSwagger',
   parameters: [{
     in: 'path',
-    name: 'user',
+    name: 'userId',
     schema: {
       type: 'number',
     },
