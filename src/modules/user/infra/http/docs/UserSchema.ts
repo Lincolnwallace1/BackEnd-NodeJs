@@ -13,6 +13,7 @@ const UserSchemaDoc = {
       },
     },
   },
+  
   GetByIdUserResponse: {
     type: 'object',
     properties: {
@@ -30,11 +31,50 @@ const UserSchemaDoc = {
       },
     },
   },
+
   UserResponseBody: {
     allOf: [
       { $ref: '#components/schemas/BasicResource' },
       { $ref: '#components/schemas/User' },
     ],
+  },
+
+  LoginUserResponse: {
+    type: 'object',
+    properties: {
+      acessToken: {
+        type: 'string',
+      },
+      acessTokenExpireIn: {
+        type: 'string',
+      },
+      refreshToken: {
+        type: 'string',
+      },
+      refreshTokenExpireIn: {
+        type: 'string',
+      },
+      user: {
+        type: 'object',
+        properties: {
+          id: {
+            type: 'number',
+          },
+          login: {
+            type: 'string',
+          },
+          name: {
+            type: 'string',
+          },
+          email: {
+            type: 'string',
+          },
+          photo: {
+            type: 'string',
+          },
+        },
+      },
+    },
   },
 };
 

@@ -1,13 +1,14 @@
 import { Request, Response } from 'express';
 import { StatusCodes } from 'http-status-codes';
 import { instanceToPlain } from 'class-transformer';
+import Jwt from 'jsonwebtoken'
 
 import AppContainer from '../../../../../common/container/index';
 import AppError from '../../../../../common/errors/AppError';
 import ParseZodValidationError from '../../../../../common/errors/ZodError';
 import PaginationSchema  from '../../../../../common/infra/http/pagination/schemas/PaginationSchema';
 
-import { CreateUserValidator, UpdateUserValidator } from '../validators/UserValidator';
+import { CreateUserValidator, UpdateUserValidator, LoginUserValidator } from '../validators/UserValidator';
 
 import CreateUserService from '../../../services/CreateUserService';
 import GetByIdUserService from '../../../services/GetByIdUserService';
@@ -15,6 +16,7 @@ import ListUserService from '../../../services/ListUserService';
 import UpdateUserService from '../../../services/UpdateUserService';
 import DeleteUserService from '../../../services/DeleteUserService';
 import UploadPhotoUserService from '../../../services/UploadPhotoUserService';
+import LoginUserService from '../../../services/LoginUserService';
 
 class UserController {
   public async create(req: Request, res: Response){
@@ -31,14 +33,10 @@ class UserController {
   public async getById(req: Request, res: Response){
     const userId = +req.params.userId;
 
-    try {
-      const user = await AppContainer.resolve<GetByIdUserService>(GetByIdUserService).execute({ userId });
+    const user = await AppContainer.resolve<GetByIdUserService>(GetByIdUserService).execute({ userId });
 
-      return res.status(StatusCodes.OK).json(instanceToPlain(user));
+    return res.status(StatusCodes.OK).json(instanceToPlain(user));
 
-    } catch(err) {
-      throw new AppError('Bad request', StatusCodes.BAD_REQUEST);
-    }
   }
 
   public async list(req:Request, res:Response): Promise<Response> {
@@ -78,15 +76,10 @@ class UserController {
   public async delete(req: Request, res: Response){
     const userId = +req.params.userId;
 
-    try {
-      const deleteUser = AppContainer.resolve<DeleteUserService>(DeleteUserService);
-      await deleteUser.execute( userId );
+    const deleteUser = AppContainer.resolve<DeleteUserService>(DeleteUserService);
+    await deleteUser.execute( userId );
 
-      return res.status(StatusCodes.OK).json();
-
-    } catch(err) {
-      throw new AppError('Bad request', StatusCodes.BAD_REQUEST);
-    }
+    return res.status(StatusCodes.OK).json();
   }
 
   public async uploadPhoto(req:Request, res:Response): Promise<Response> {
@@ -95,11 +88,21 @@ class UserController {
     if (!req.file) throw new AppError('Missing File', StatusCodes.BAD_REQUEST);
     const filename = req.file?.filename;
 
-    console.log('filename', filename);
     const uploadPhoto = AppContainer.resolve<UploadPhotoUserService>(UploadPhotoUserService);
     await uploadPhoto.execute({userId, filename });
 
     return res.status(StatusCodes.NO_CONTENT).json({});
+  }
+
+  public async login(req:Request, res:Response): Promise<Response>{
+     const data = await LoginUserValidator.parseAsync(req.body).catch((err) => {
+      throw new AppError(`Validation Error: ${err.message}`, StatusCodes.BAD_REQUEST);
+    });
+    
+    const loginUser = AppContainer.resolve<LoginUserService>(LoginUserService);
+    const response = await loginUser.execute({ data });
+
+    return res.status(200).json(response);
   }
 }
 

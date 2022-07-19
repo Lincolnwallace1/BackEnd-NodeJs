@@ -12,4 +12,10 @@ const UpdateUserValidator = Z.object({
   password: Z.string().min(3).max(255).optional(),
 });
 
-export { CreateUserValidator, UpdateUserValidator };
+const LoginUserValidator = Z.object({
+  email: Z.string().max(255),
+  password: Z.string().max(1024),
+});
+
+
+export { CreateUserValidator, UpdateUserValidator, LoginUserValidator };

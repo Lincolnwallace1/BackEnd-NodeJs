@@ -5,6 +5,7 @@ import UpdateUser from './UpdatedUserSwagger';
 import ListAllUser from './ListAllUsersSwagger';
 import DeleteUser from './DeleteUserSwagger';
 import UploadPhotoUser from './UploadUserPhotoSwagger';
+import LoginUser from './LoginUserSwagger'
 
 const UserDocs = {
   UserSchema,
@@ -14,6 +15,7 @@ const UserDocs = {
   ListAllUser,
   DeleteUser,
   UploadPhotoUser,
+  LoginUser,
 };
 
 export default UserDocs;

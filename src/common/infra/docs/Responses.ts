@@ -54,6 +54,18 @@ const Responses = {
       },
     },
   },
+  SuccessfullyLogged: {
+    description: 'The User was authorized.',
+    content: {
+      'application/json': {
+        schema: {
+          allOf: [
+            { $ref: '#components/schemas/LoginUserResponse' },
+          ],
+        },
+      },
+    },
+  },
   SuccessfulRequestNoResponseBody: {
     description: 'The request has successfully been processed.',
   },

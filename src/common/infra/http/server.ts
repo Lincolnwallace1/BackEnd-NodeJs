@@ -1,6 +1,7 @@
 import express from 'express';
 import figlet from 'figlet';
 import chalk from 'chalk';
+import 'express-async-errors';
 
 import { AppDataSource } from '../typeorm/index';
 import swaggerUiExpress = require ("swagger-ui-express");
@@ -15,10 +16,10 @@ AppDataSource.initialize().then(() => {
   app.use(express.json());
 
   app.use('/api/v1',Routes);
-
-  app.use(GlobalExceptionMiddleware);
-
+  
   app.use('/api/v1/docs', swaggerUiExpress.serve, swaggerUiExpress.setup(swaggerDefinition, { customSiteTitle: 'User API'}));
+  
+  app.use(GlobalExceptionMiddleware);
 
   return app.listen(3333, () => {
     console.log(chalk.cyan(figlet.textSync('User API')));
