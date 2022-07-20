@@ -1,7 +1,7 @@
+import 'express-async-errors';
 import express from 'express';
 import figlet from 'figlet';
 import chalk from 'chalk';
-import 'express-async-errors';
 
 import { AppDataSource } from '../typeorm/index';
 import swaggerUiExpress = require ("swagger-ui-express");
