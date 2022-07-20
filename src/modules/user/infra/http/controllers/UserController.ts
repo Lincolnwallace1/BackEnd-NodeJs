@@ -89,7 +89,7 @@ class UserController {
     const filename = req.file?.filename;
 
     const uploadPhoto = AppContainer.resolve<UploadPhotoUserService>(UploadPhotoUserService);
-    await uploadPhoto.execute({userId, filename });
+    await uploadPhoto.execute({ userId, filename });
 
     return res.status(StatusCodes.NO_CONTENT).json({});
   }
