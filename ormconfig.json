@@ -1,0 +1,19 @@
+[
+  {
+    "name": "default",
+    "type": "postgres",
+    "host": "localhost",
+    "port": 5432,
+    "username": "postgres",
+    "password": "postgres",
+    "database": "users",
+    "schema": "public",
+    "synchronize": false,
+    "logging": false,
+    "migrations": ["./src/config/migrations/**.ts"],
+    "entities": ["./src/modules/**/infra/typeorm/entities/**.ts"],
+    "cli": {
+      "migrationsDir": "./src/config/migrations/"
+    }
+  }
+]
