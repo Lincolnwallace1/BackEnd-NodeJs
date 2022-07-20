@@ -43,3 +43,10 @@ yarn add express
 yarn add @types/express -D
 
 yarn add ts-node-dev -D
+
+## Banco de dados
+
+O banco de dados escolhido foi o PostegreSQL, para instalar sua dependencia, executar na raiz do projeto:
+
+yarn add reflect-metadata pg
+
